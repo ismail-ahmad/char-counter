@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Length checker for SEO</title>
+	<style>
+		body{
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+			color: rgb(3, 72, 169);
+			background-color: cornflowerblue;
+		}
+		*, *::after, *::before{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		h1{
+			text-align: center;
+			margin: 30px auto 30px;
+			text-decoration: 2px solid rgb(3, 72, 169) underline;
+		}
+		div#tool-container{
+			border: 1px solid red;
+		}
+		#textarea{
+			font-family: inherit;
+			color: rgb(3, 72, 169);
+			border: 2px solid rgb(3, 72, 169);
+			background-color: rgb(212, 221, 238);
+			border-radius: 5px;
+			text-align: center;
+			font-size: 16px;
+			padding: 5px;
+			resize: none;
+			width: calc(100% - 100px);
+			height: 100px;
+			display: block;
+			margin-top: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			outline: none;
+		}
+		#result{
+			text-align: center;
+			transform: translateX(-10%);
+			font-variant: small-caps;
+		}
+	</style>
+</head>
+<body>
+	<h1 id="mainheading">
+		Character Counter
+	</h1>
+		<form action="post">
+			<textarea name="" id="textarea">Paste the content here!</textarea> <br />
+		</form>
+	<div id="result">
+	</div>
+	<script>
+		let textarea = document.getElementsByTagName("textarea")[0];
+		textarea.addEventListener("click", () => {
+			if(textarea.value === "Input the string here!") {
+				textarea.value = "";
+			} else {
+				return;
+			}
+		});
+		document.getElementById("textarea").addEventListener("input", () => {
+			const textarea = document.getElementById('textarea');
+			let textValue = textarea.value;
+			let res = textValue.split("").length;
+			if (res === 0) {
+				document.getElementById('result').textContent = "";
+			}else if(res < 150) {
+				document.getElementById('result').textContent = "String length is shorter than recommended: " + res;
+				document.getElementById('result').style.color = "red";
+			}else if(res > 160) {
+				document.getElementById('result').textContent = "String length is longer than recommended: " + res;
+				document.getElementById('result').style.color = "red";
+			} else{
+				document.getElementById('result').textContent = "String length is Optimal: " + res;
+				document.getElementById('result').style.color = "lightgreen";
+			}
+		});
+	</script>
+</body>
+</html>
