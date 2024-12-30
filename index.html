@@ -60,7 +60,7 @@
 	</div>
 	<script>
 		let textarea = document.getElementsByTagName("textarea")[0];
-		textarea.addEventListener("click", () => {
+		textarea.addEventListener("click", function() { this.style.textAlign = "left";
 			if(textarea.value === "Paste the content here!") {
 				textarea.value = "";
 			} else {
