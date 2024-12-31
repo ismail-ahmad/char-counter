@@ -17,9 +17,10 @@
 			box-sizing: border-box;
 		}
 		h1{
+			color: rgb(220, 230, 247);
 			text-align: center;
 			margin: 30px auto 30px;
-			text-decoration: 2px solid rgb(3, 72, 169) underline;
+			text-decoration: 2px solid rgb(220, 230, 247) underline;
 		}
 		div#tool-container{
 			border: 1px solid red;
@@ -60,10 +61,20 @@
 	</div>
 	<script>
 		let textarea = document.getElementsByTagName("textarea")[0];
-		textarea.addEventListener("click", function() { this.style.textAlign = "left";
+		textarea.addEventListener("focus", function() { this.style.textAlign = "left";
 			if(textarea.value === "Paste the content here!") {
 				textarea.value = "";
 			} else {
+				return;
+			}
+		});
+		textarea.addEventListener("blur", function() { this.style.textAlign = "center";
+			if(textarea.value === "") {
+				textarea.value = "Paste the content here!";
+			} else if(textarea.value!=="Paste the content here!") {
+				this.style.textAlign = "left";
+			} 
+			else {
 				return;
 			}
 		});
@@ -73,15 +84,9 @@
 			let res = textValue.split("").length;
 			if (res === 0) {
 				document.getElementById('result').textContent = "";
-			}else if(res < 150) {
-				document.getElementById('result').textContent = "String length is shorter than recommended: " + res;
-				document.getElementById('result').style.color = "red";
-			}else if(res > 160) {
-				document.getElementById('result').textContent = "String length is longer than recommended: " + res;
-				document.getElementById('result').style.color = "red";
-			} else{
-				document.getElementById('result').textContent = "String length is Optimal: " + res;
-				document.getElementById('result').style.color = "lightgreen";
+			}else {
+				document.getElementById('result').textContent = "Content length is: " + res;
+				document.getElementById('result').style.color = "blue";
 			}
 		});
 	</script>
